@@ -168,15 +168,30 @@ class Assets(MixinTimestamps, MixinIncludesTags, MixinByIds, MixinByIdsAndType, 
   # related assetSites:orders
   orders: Mapped[List['Orders']] = relationship(secondary = ln_orders_products, back_populates = 'products')
 
-  # self-referential, has|belongs-to assets
-  assets_has: Mapped[List['Assets']] = relationship(
-    secondary     = ln_assets_assets, 
-    primaryjoin   = id == ln_assets_assets.c.asset_l_id, 
-    secondaryjoin = id == ln_assets_assets.c.asset_r_id, 
-    backref       = backref('assets_belong', lazy = 'dynamic'),
-    # back_populates = 'assets'
-  )
+  # # self-referential, has|belongs-to assets
+  # assets_has: Mapped[List['Assets']] = relationship(
+  #   secondary     = ln_assets_assets, 
+  #   primaryjoin   = id == ln_assets_assets.c.asset_l_id, 
+  #   secondaryjoin = id == ln_assets_assets.c.asset_r_id, 
+  #   backref       = backref('assets_belong', lazy = 'dynamic'),
+  #   # back_populates = 'assets'
+  # )
 
+  # explicit self backrefs
+  assets_has: Mapped[list['Assets']] = relationship(
+    secondary      = ln_assets_assets,
+    primaryjoin    = id == ln_assets_assets.c.asset_l_id,
+    secondaryjoin  = id == ln_assets_assets.c.asset_r_id,
+    back_populates = 'assets_belong',
+  )
+  # assets this one belongs to
+  assets_belong: Mapped[list['Assets']] = relationship(
+    secondary      = ln_assets_assets,
+    primaryjoin    = id == ln_assets_assets.c.asset_r_id,
+    secondaryjoin  = id == ln_assets_assets.c.asset_l_id,
+    back_populates = 'assets_has',
+  )
+  
   
   # public
   def tags_add(self, *tags, _commit = True):
