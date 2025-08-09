@@ -71,14 +71,13 @@ if Config.CLOUD_MESSAGING_INIT:
   import src.config.cloud_messaging
 
 
-# routes:graphql, @[`POST /graphql`]
+# routes:graphql, @[POST /graphql]
 from src.graphql.setup import graphql_mount_endpoint
 graphql_mount_endpoint(app)
 
-# routes:misc.
-@app.route('/', methods=('GET',))
-def hello():
-    return f'!hello {Config.MESSAGE}!'
+# mount route:home @[/]
+from src.blueprints.home import bp_home
+app.register_blueprint(bp_home)
 
 
 # middleware:before
