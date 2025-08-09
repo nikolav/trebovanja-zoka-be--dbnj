@@ -23,6 +23,7 @@ from src.utils.mixins import MixinTimestamps
 from src.utils.mixins import MixinExistsID
 from src.utils.mixins import MixinFieldMergeable
 from src.utils.mixins import MixinByIds
+from src.utils.mixins import MixinManageTagsOnDocs
 
 from src.schemas.serialization import SchemaSerializeDocs
 
@@ -34,7 +35,7 @@ _schemaDocsDumpMany = SchemaSerializeDocs(many = True)
 
 
 # https://docs.sqlalchemy.org/en/20/tutorial/metadata.html#declaring-mapped-classes
-class Docs(MixinTimestamps, MixinExistsID, MixinByIds, MixinFieldMergeable, _dbcli.Model):
+class Docs(MixinTimestamps, MixinExistsID, MixinByIds, MixinFieldMergeable, MixinManageTagsOnDocs, _dbcli.Model):
   __tablename__ = docsTable
 
   id   : Mapped[int]           = mapped_column(primary_key = True)

@@ -109,3 +109,13 @@ class MixinManageTagsBase():
 class MixinManageTagsOnOrders(MixinManageTagsBase):
   FIELD = 'orders'
 
+
+class MixinManageTagsOnAssets(MixinManageTagsBase):
+  FIELD = 'assets'
+
+
+class MixinManageTagsOnDocs(MixinManageTagsBase):
+  FIELD = 'docs'
+
+
+

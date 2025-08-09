@@ -26,6 +26,7 @@ from src.utils.mixins import MixinExistsID
 from src.utils.mixins import MixinFieldMergeable
 from src.utils.mixins import MixinIncludesTags
 from src.utils.mixins import MixinByIdsAndType
+from src.utils.mixins import MixinManageTagsOnAssets
 
 from src.models.docs  import Docs
 from src.models.docs  import Tags
@@ -132,7 +133,7 @@ class AssetsIOEvents(Enum):
   # IOEVENT_ASSETS_FORMS_SUBMISSION_prefix      = 'IOEVENT_ASSETS_FORMS_SUBMISSION:kLctvwLigtUAaHzTD:'
 
 
-class Assets(MixinTimestamps, MixinIncludesTags, MixinByIds, MixinByIdsAndType, MixinExistsID, MixinFieldMergeable, _dbcli.Model):
+class Assets(MixinTimestamps, MixinIncludesTags, MixinByIds, MixinByIdsAndType, MixinExistsID, MixinFieldMergeable, MixinManageTagsOnAssets, _dbcli.Model):
   __tablename__ = assetsTable
 
   # ID
@@ -191,36 +192,6 @@ class Assets(MixinTimestamps, MixinIncludesTags, MixinByIds, MixinByIdsAndType, 
     secondaryjoin  = id == ln_assets_assets.c.asset_l_id,
     back_populates = 'assets_has',
   )
-  
-  
-  # public
-  def tags_add(self, *tags, _commit = True):
-    changes = 0
-
-    for tname in filter(lambda p: not self.includes_tags(p), tags):
-      tp = Tags.by_name(tname, create = True, _commit = _commit)
-      tp.assets.append(self)
-      changes += 1
-    
-    if (0 < changes) and (True == _commit):
-      _dbcli.session.commit()
-    
-    return changes
-
-
-  # public
-  def tags_rm(self, *tags, _commit = True):
-    changes = 0
-
-    for tname in filter(lambda p: self.includes_tags(p), tags):
-      tp = Tags.by_name(tname, create = True, _commit = _commit)
-      tp.assets.remove(self)
-      changes += 1
-    
-    if (0 < changes) and (True == _commit):
-      _dbcli.session.commit()
-    
-    return changes
   
 
   # public
