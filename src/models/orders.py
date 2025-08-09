@@ -16,6 +16,7 @@ from src.utils.mixins import MixinIncludesTags
 from src.utils.mixins import MixinByIds
 from src.utils.mixins import MixinExistsID
 from src.utils.mixins import MixinFieldMergeable
+from src.utils.mixins import MixinManageTagsOnOrders
 
 from . import db
 from . import assetsTable
@@ -37,7 +38,7 @@ class OrdersTags(Enum):
   TAG_ORDERS_SHAREABLE_GLOBALY = 'TAG_ORDERS_SHAREABLE_GLOBALY:61cde3f6-cdf8-5769-bf11-93b91f4ff49d'
 
 
-class Orders(MixinTimestamps, MixinIncludesTags, MixinByIds, MixinExistsID, MixinFieldMergeable, _dbcli.Model):
+class Orders(MixinTimestamps, MixinIncludesTags, MixinByIds, MixinExistsID, MixinFieldMergeable, MixinManageTagsOnOrders, _dbcli.Model):
   __tablename__ = ordersTable
 
   # ID
@@ -59,33 +60,33 @@ class Orders(MixinTimestamps, MixinIncludesTags, MixinByIds, MixinExistsID, Mixi
   products : Mapped[List['Assets']] = relationship(secondary = ln_orders_products, back_populates = 'orders')
   
 
-  # public
-  def tags_add(self, *tags, _commit = True):
-    changes = 0
+  # # public
+  # def tags_add(self, *tags, _commit = True):
+  #   changes = 0
 
-    for tname in filter(lambda p: not self.includes_tags(p), tags):
-      tp = Tags.by_name(tname, create = True, _commit = _commit)
-      tp.orders.append(self)
-      changes += 1
+  #   for tname in filter(lambda p: not self.includes_tags(p), tags):
+  #     tp = Tags.by_name(tname, create = True, _commit = _commit)
+  #     tp.orders.append(self)
+  #     changes += 1
     
-    if (0 < changes) and (True == _commit):
-      _dbcli.session.commit()
+  #   if (0 < changes) and (True == _commit):
+  #     _dbcli.session.commit()
     
-    return changes
+  #   return changes
   
   
-  # public
-  def tags_rm(self, *tags, _commit = True):
-    changes = 0
+  # # public
+  # def tags_rm(self, *tags, _commit = True):
+  #   changes = 0
 
-    for tname in filter(lambda p: self.includes_tags(p), tags):
-      tp = Tags.by_name(tname, create = True, _commit = _commit)
-      tp.orders.remove(self)
-      changes += 1
+  #   for tname in filter(lambda p: self.includes_tags(p), tags):
+  #     tp = Tags.by_name(tname, create = True, _commit = _commit)
+  #     tp.orders.remove(self)
+  #     changes += 1
     
-    if (0 < changes) and (True == _commit):
-      _dbcli.session.commit()
+  #   if (0 < changes) and (True == _commit):
+  #     _dbcli.session.commit()
     
-    return changes
+  #   return changes
 
 
