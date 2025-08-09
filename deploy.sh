@@ -10,6 +10,13 @@ fi
 docker compose up -d --build api
 
 
-# docker exec -it api python script.py
+#  run script inside container
+# $ docker exec -it api python script.py
 
-# find . -type d -name "node_modules" -prune -o -type f -name "*" -exec grep --color=auto -Hn "class" {} +
+#  clean up unused containers, networks, and volumes:
+# $ docker system prune -a
+# $ docker system prune -a --volumes
+
+#  search files by content
+# $ find . -type d -name "node_modules" -prune -o -type f -name "*" -exec grep --color=auto -Hn "class" {} +
+

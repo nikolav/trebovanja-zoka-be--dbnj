@@ -22,4 +22,6 @@ def resolve_test(_o, _i):
     ))
   
   return SchemaSerializeAssets(many = True, exclude = ('assets_has',)).dump(
-    Assets.assets_children(a1))
+    Assets.assets_children(a1)) if a1 else []
+
+

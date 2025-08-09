@@ -12,12 +12,12 @@ https://qyilcewitexjndalxkexol.online
 
 ###
 
-POST http://127.0.0.1:5000/graphql
+POST https://qyilcewitexjndalxkexol.online/graphql
 Accept: application/json
 Content-Type: application/json
 
 {
-    "query": "mutation { test }"
+    "query": "{ status }"
 }
 
 ###
