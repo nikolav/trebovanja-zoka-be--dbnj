@@ -1,5 +1,7 @@
 
 import json
+from datetime import datetime
+from datetime import timezone
 
 from marshmallow import fields
 from marshmallow import Schema
@@ -18,7 +20,7 @@ class _SchemaResponseStatus(Schema):
 
 _schema = _SchemaResponseStatus()
 
-class Utils:  
+class Utils():
   class ResponseStatus():
     def __init__(self):
       self.error  = None
@@ -29,5 +31,10 @@ class Utils:
     
     def __repr__(self):
       return json.dumps(self.dump())
+  
+  class date():
+    @staticmethod
+    def utcnow():
+      return datetime.now(tz = timezone.utc)
 
 

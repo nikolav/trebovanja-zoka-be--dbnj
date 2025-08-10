@@ -1,22 +1,23 @@
+
 from datetime import datetime
-from datetime import timezone
 from copy     import deepcopy
 
 from sqlalchemy     import func
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 
-from flask_app import db
+from flask_app                  import db
 from src.utils.merge_strategies import dict_deepmerger_extend_lists as merger
-from src.models.tags import Tags
+from src.models.tags            import Tags
+from src.utils                  import Utils
 
 
 _err, _dbcli = db
 
 class MixinTimestamps():
-  created_at: Mapped[datetime] = mapped_column(default = lambda: datetime.now(tz = timezone.utc))
-  updated_at: Mapped[datetime] = mapped_column(default = lambda: datetime.now(tz = timezone.utc),
-                                               onupdate = lambda: datetime.now(tz = timezone.utc))
+  created_at: Mapped[datetime] = mapped_column(default = Utils.date.utcnow)
+  updated_at: Mapped[datetime] = mapped_column(default = Utils.date.utcnow,
+                                               onupdate = Utils.date.utcnow)
 
 
 class MixinExistsID():
