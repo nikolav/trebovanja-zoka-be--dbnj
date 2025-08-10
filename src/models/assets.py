@@ -279,8 +279,7 @@ class Assets(MixinTimestamps, MixinIncludesTags, MixinByIds, MixinByIdsAndType, 
 
   # public
   def get_data(self):
-    d = self.data if None != self.data else {}
-    return d.copy()
+    return self.data.copy() if None != self.data else {}
   
 
   @staticmethod
@@ -292,7 +291,6 @@ class Assets(MixinTimestamps, MixinIncludesTags, MixinByIds, MixinByIdsAndType, 
         for account's groups related parent assets:sites,
       @PtAIDS; only provided parent assets IDs
     '''
-    aids = map(lambda a: a.id, lsa)
     AssetsAliasedParent = aliased(Assets)
     q = _dbcli.select(
       AssetsAliasedParent.id
@@ -303,7 +301,9 @@ class Assets(MixinTimestamps, MixinIncludesTags, MixinByIds, MixinByIdsAndType, 
       Assets,
       ln_assets_assets.c.asset_r_id == Assets.id
     ).where(
-      Assets.id.in_(aids))
+      Assets.id.in_(
+        map(lambda a: a.id, lsa)
+      ))
 
     if TYPE:
       q = q.where(
@@ -330,7 +330,6 @@ class Assets(MixinTimestamps, MixinIncludesTags, MixinByIds, MixinByIdsAndType, 
       example: 
         find products from stores,
     '''
-    aids = map(lambda a: a.id, lsa)
     AssetsAliasedParrent = aliased(Assets)
     q = _dbcli.select(
       Assets.id
@@ -341,7 +340,9 @@ class Assets(MixinTimestamps, MixinIncludesTags, MixinByIds, MixinByIdsAndType, 
       AssetsAliasedParrent,
       ln_assets_assets.c.asset_l_id == AssetsAliasedParrent.id
     ).where(
-      AssetsAliasedParrent.id.in_(aids))
+      AssetsAliasedParrent.id.in_(
+        map(lambda a: a.id, lsa)
+      ))
     
     if None != TYPE:
       q = q.where(

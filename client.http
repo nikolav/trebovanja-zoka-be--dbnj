@@ -12,7 +12,17 @@ https://qyilcewitexjndalxkexol.online
 
 ###
 
-POST https://qyilcewitexjndalxkexol.online/graphql
+POST http://127.0.0.1:5000/testing
+Accept: application/json
+Content-Type: application/json
+
+{
+    
+}
+
+###
+
+POST http://127.0.0.1:5000/graphql
 Accept: application/json
 Content-Type: application/json
 

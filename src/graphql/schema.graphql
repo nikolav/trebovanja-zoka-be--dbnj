@@ -12,8 +12,6 @@ scalar NumberReal
 type Query {
   # api:status
   status: JsonData
-  # api:tests
-  demo: JsonData
 
   # cache:redis
   cacheRedisGetCacheByKey(cache_key: String!): JsonData!
@@ -23,8 +21,6 @@ type Query {
 ## @Mutation
 
 type Mutation {
-  test: JsonData
-
   # cache:redis
   cacheRedisCommit(cache_key: String!, patch: JsonData, merge: Boolean ): JsonData!
 }
