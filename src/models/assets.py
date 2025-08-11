@@ -179,13 +179,14 @@ class Assets(MixinTimestamps, MixinIncludesTags, MixinByIds, MixinByIdsAndType, 
   # )
 
   # explicit self backrefs
+  #  assets this one has
   assets_has: Mapped[list['Assets']] = relationship(
     secondary      = ln_assets_assets,
     primaryjoin    = id == ln_assets_assets.c.asset_l_id,
     secondaryjoin  = id == ln_assets_assets.c.asset_r_id,
     back_populates = 'assets_belong',
   )
-  # assets this one belongs to
+  #  assets this one belongs to
   assets_belong: Mapped[list['Assets']] = relationship(
     secondary      = ln_assets_assets,
     primaryjoin    = id == ln_assets_assets.c.asset_r_id,

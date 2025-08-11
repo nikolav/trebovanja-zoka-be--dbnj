@@ -53,15 +53,7 @@ class Docs(MixinTimestamps, MixinExistsID, MixinByIds, MixinFieldMergeable, Mixi
   # magic
   def __repr__(self):
     return f'Docs({json.dumps(self.dump())})'
-  
-
-  # public
-  def get_data(self, updates = None):
-    d = self.data.copy()
-    if None != updates:
-      d.update(updates)
-    return d
-  
+    
   
   # public
   def dump(self, **kwargs):

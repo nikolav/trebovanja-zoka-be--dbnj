@@ -44,7 +44,8 @@ class MixinByIds():
 
 class MixinFieldMergeable():
   def data_patched(self, *, patch, FIELD = 'data'):
-    return merger.merge(deepcopy(getattr(self, FIELD, {})), patch)
+    d = getattr(self, FIELD, None) or {}
+    return merger.merge(deepcopy(d), patch)
   
   def data_update(self, *, patch, FIELD = 'data'):
     setattr(self, FIELD, patch)
