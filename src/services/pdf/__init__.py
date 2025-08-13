@@ -1,6 +1,6 @@
 
 import base64
-
+import contextlib
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
@@ -31,23 +31,35 @@ params = {
   # 'marginRight': 0.4,
 }
 
+@contextlib.contextmanager
+def _chrome_driver_context(options):
+  service = Service()
+  driver  = None
+  
+  try:
+    driver = webdriver.Chrome(service = service, options = options)
+    yield driver
+
+  finally:
+    if driver is not None:
+      driver.quit()
+      service.stop()
+
+
 def _base64_encode(file):
   return base64.b64encode(file).decode('utf-8')
+
 
 def printHtmlToPDF(text = '', *, 
                    base64_encoded = False,
                   ):
-  service = Service()
-  driver  = webdriver.Chrome(
-    service = service, 
-    options = chrome_options)
-    
-  driver.get(text_to_uri_data(text))
-  
-  pdfdata = driver.execute_cdp_cmd("Page.printToPDF", params)
-  pdf     = base64.b64decode(pdfdata['data'])
-  
-  driver.quit()
+  global chrome_options
+  global params
+
+  with _chrome_driver_context(chrome_options) as driver:
+    driver.get(text_to_uri_data(text))
+    pdfdata = driver.execute_cdp_cmd("Page.printToPDF", params)
+    pdf     = base64.b64decode(pdfdata['data'])
 
   return pdf if not base64_encoded else _base64_encode(pdf)
 
