@@ -1,17 +1,15 @@
 
-# Use official Python image with slim variant to reduce size
 FROM python:3.12.2-slim
 
-# Set work directory
 WORKDIR /home/app
 
-# Set environment variables
+# env
 ENV CHROME_BIN=/usr/bin/google-chrome \
     CHROME_PATH=/usr/lib/chromium-browser/ \
     HEADLESS=true \
     CHROME_OPTS="--headless --disable-gpu --no-sandbox --disable-dev-shm-usage"
 
-# Install system dependencies for Chrome and clean up in one layer
+# chrome driver --headless
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         wget \
@@ -30,57 +28,17 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     google-chrome --version
 
-# Install Python dependencies
+# py
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Copy application files
+# app files
 COPY . .
 
-## Set non-root user for security
-# RUN useradd -m appuser && chown -R appuser:appuser /app
-# USER appuser
-
-# Expose Flask port
 EXPOSE 5000
 
-## Health check
-# HEALTHCHECK --interval=30s --timeout=3s \
-#     CMD curl -f http://localhost:5000/health || exit 1
-
-# Run app
+# app:run
 CMD ["./wserver.sh"]
 
 
-
-
-#################
-#################
-## Dockerfile.old
-
-# FROM python:3.12.2
-
-# # Set work directory
-# WORKDIR /home/app
-
-# # Install dependencies
-# COPY requirements.txt ./
-# RUN pip install --no-cache-dir -r requirements.txt
-
-# # Copy files
-# COPY . .
-
-# # add chrome --headless for pdfs
-# RUN apt update
-# RUN apt-get update -y
-# RUN curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-# RUN apt-get install -y ./google-chrome-stable_current_amd64.deb
-# RUN rm ./google-chrome-stable_current_amd64.deb
-
-# # Expose Flask port
-# EXPOSE 5000
-
-# # Run app
-# # CMD ["python", "app.py"]
-# CMD ["./wserver.sh"]
