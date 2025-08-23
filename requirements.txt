@@ -116,6 +116,7 @@ SQLAlchemy==2.0.25
 starlette==0.37.0
 trio==0.25.1
 trio-websocket==0.11.1
+tweepy==4.16.0
 twilio==9.3.1
 typing_extensions==4.9.0
 tzdata==2024.1

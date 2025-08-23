@@ -2,14 +2,6 @@
 from flask      import Blueprint
 from flask_cors import CORS
 
-from flask_app import db
-
-from src.models.docs           import Docs
-from src.models.assets         import Assets
-from src.schemas.serialization import SchemaSerializeAssets
-from src.schemas.serialization import SchemaSerializeDocs
-from src.config import Config
-
 
 bp_testing = Blueprint('testing', __name__, url_prefix = '/testing')
 
@@ -18,7 +10,4 @@ CORS(bp_testing)
 
 @bp_testing.route('/', methods = ('POST',))
 def resolve_route_testing():
-  _err, dd = db
-  d1 = dd.session.get(Docs, 1)
-  return SchemaSerializeDocs().dump(d1)
-
+  return []

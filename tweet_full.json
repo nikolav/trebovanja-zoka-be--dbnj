@@ -1,0 +1,137 @@
+{
+  "data": {
+    "public_metrics": {
+      "retweet_count": 1,
+      "reply_count": 2,
+      "like_count": 107,
+      "quote_count": 1,
+      "bookmark_count": 1,
+      "impression_count": 1207
+    },
+    "author_id": "1772573415511134208",
+    "possibly_sensitive": false,
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "1956287179736432783"
+      }
+    ],
+    "edit_history_tweet_ids": [
+      "1956314692290302433"
+    ],
+    "in_reply_to_user_id": "1867582598215872515",
+    "id": "1956314692290302433",
+    "conversation_id": "1956287179736432783",
+    "lang": "und",
+    "reply_settings": "everyone",
+    "entities": {
+      "mentions": [
+        {
+          "start": 0,
+          "end": 11,
+          "username": "JelA123abc",
+          "id": "1867582598215872515"
+        }
+      ]
+    },
+    "created_at": "2025-08-15T11:19:03.000Z",
+    "text": "@JelA123abc hvala ti botino sto si okacio ovaj snimak\ni tebe ce u sjenicu da saljemo"
+  },
+  "includes": {
+    "users": [
+      {
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1909940223066169344/e89bz4As_normal.jpg",
+        "location": "Black Site, Belgrade",
+        "protected": false,
+        "username": "antibotter011",
+        "description": "GLORIA FORTIS MILES!\nSamo jako protiv SNS robova!",
+        "verified": false,
+        "created_at": "2024-03-26T10:36:56.000Z",
+        "url": "https://t.co/sQE4ea5kLA",
+        "id": "1772573415511134208",
+        "public_metrics": {
+          "followers_count": 4409,
+          "following_count": 1893,
+          "tweet_count": 20924,
+          "listed_count": 9,
+          "like_count": 91613,
+          "media_count": 3101
+        },
+        "name": "Mustakrakish Forever",
+        "entities": {
+          "url": {
+            "urls": [
+              {
+                "start": 0,
+                "end": 23,
+                "url": "https://t.co/sQE4ea5kLA",
+                "expanded_url": "http://sikter.org",
+                "display_url": "sikter.org"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "profile_image_url": "https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png",
+        "protected": false,
+        "username": "JelA123abc",
+        "description": "",
+        "verified": false,
+        "created_at": "2024-12-13T14:49:47.000Z",
+        "id": "1867582598215872515",
+        "public_metrics": {
+          "followers_count": 27,
+          "following_count": 25,
+          "tweet_count": 151,
+          "listed_count": 0,
+          "like_count": 0,
+          "media_count": 151
+        },
+        "name": "Jela123"
+      }
+    ],
+    "tweets": [
+      {
+        "attachments": {
+          "media_keys": [
+            "7_1956287160601952256"
+          ]
+        },
+        "public_metrics": {
+          "retweet_count": 69,
+          "reply_count": 79,
+          "like_count": 256,
+          "quote_count": 194,
+          "bookmark_count": 70,
+          "impression_count": 181153
+        },
+        "author_id": "1867582598215872515",
+        "possibly_sensitive": false,
+        "edit_history_tweet_ids": [
+          "1956287179736432783"
+        ],
+        "id": "1956287179736432783",
+        "conversation_id": "1956287179736432783",
+        "lang": "zxx",
+        "reply_settings": "everyone",
+        "entities": {
+          "urls": [
+            {
+              "start": 0,
+              "end": 23,
+              "url": "https://t.co/wzGKa2Fo9G",
+              "expanded_url": "https://x.com/JelA123abc/status/1956287179736432783/video/1",
+              "display_url": "pic.x.com/wzGKa2Fo9G",
+              "media_key": "7_1956287160601952256"
+            }
+          ]
+        },
+        "created_at": "2025-08-15T09:29:44.000Z",
+        "text": "https://t.co/wzGKa2Fo9G"
+      }
+    ]
+  },
+  "errors": [],
+  "meta": {}
+}

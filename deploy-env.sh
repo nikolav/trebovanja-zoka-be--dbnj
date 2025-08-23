@@ -6,6 +6,8 @@ VARS_PATH="./deploy-vars.sh"
 LOG_FILE="./server_setup.log"
 DOCKER_COMPOSE_VERSION="v2.27.0"
 USERNAME=$(whoami)
+ADMIN_NAME="nikolav"
+ADMIN_EMAIL="admin@nikolav.rs"
 
 
 # helpers
@@ -82,7 +84,7 @@ ufw allow OpenSSH | tee -a $LOG_FILE
 ufw allow http | tee -a $LOG_FILE
 ufw allow https | tee -a $LOG_FILE
 ufw allow 'Nginx Full' | tee -a $LOG_FILE
-# ufw allow 5000/tcp | tee -a $LOG_FILE
+ufw allow 5000/tcp | tee -a $LOG_FILE
 ufw --force enable | tee -a $LOG_FILE
 
 
@@ -129,4 +131,5 @@ ufw status verbose | tee -a $LOG_FILE
 
 log_message "Server setup completed successfully. A log has been saved to $LOG_FILE"
 log_message "Please restart your session or run 'newgrp docker' to apply Docker group changes"
+
 
