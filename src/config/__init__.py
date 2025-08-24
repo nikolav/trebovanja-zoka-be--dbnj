@@ -49,9 +49,9 @@ class Config:
   MONGODB_INIT = bool(os.getenv('MONGODB_INIT'))
   MONGODB_URI = os.getenv('MONGODB_URI_production') if PRODUCTION_ else os.getenv('MONGODB_URI_development')
 
-  # cloud messaging
-  CLOUD_MESSAGING_INIT        = bool(os.getenv('CLOUD_MESSAGING_INIT'))
-  CLOUD_MESSAGING_CERTIFICATE = os.getenv('CLOUD_MESSAGING_CERTIFICATE')
+  # services:firebase-admin
+  FIREBASE_ADMIN_INIT          = bool(os.getenv('FIREBASE_ADMIN_INIT'))
+  CREDENTIALS_FIREBASEADMINSDK = os.getenv('CREDENTIALS_FIREBASEADMINSDK')
 
   # db
   DB_INIT                       = bool(os.getenv('DB_INIT'))

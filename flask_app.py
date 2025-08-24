@@ -66,9 +66,9 @@ Talisman(app,
          force_https=False,
         )
 
-# cloud messaging
-if Config.CLOUD_MESSAGING_INIT:
-  import src.config.cloud_messaging
+# services:firebase-admin
+if Config.FIREBASE_ADMIN_INIT:
+  import src.config.firebase_admin
 
 
 # routes:graphql, @[POST /graphql]
