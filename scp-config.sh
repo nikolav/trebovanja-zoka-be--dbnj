@@ -1,7 +1,7 @@
 #!/bin/bash
 
-API_HOST=45.76.91.37
-APP_PATH=/root/app/flaskapp
+API_HOST=80.240.25.97
+APP_PATH=/root/app/trebovanja-zoka-be--dbnj
 
 scp ./.env root@$API_HOST:$APP_PATH
 # scp ./db/.env root@$API_HOST:$APP_PATH/db
