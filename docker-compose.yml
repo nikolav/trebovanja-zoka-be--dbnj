@@ -1,0 +1,14 @@
+services:
+  api:
+    container_name: api
+    build: .
+    restart: unless-stopped
+    ports:
+      - 5000:5000
+    # depends_on:
+    #   - pg
+    #   - redis
+    env_file:
+      - ./.env
+    volumes:
+      - ./storage:/home/app/storage

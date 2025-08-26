@@ -1,0 +1,32 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+scalar JsonData
+scalar NumberReal
+
+#########
+## @Query
+
+type Query {
+  # api:status
+  status: JsonData
+
+  # cache:redis
+  cacheRedisGetCacheByKey(cache_key: String!): JsonData!
+}
+
+############
+## @Mutation
+
+type Mutation {
+
+  # cache:redis
+  cacheRedisCommit(cache_key: String!, patch: JsonData, merge: Boolean ): JsonData!
+
+  # messaging
+  cloudMessagingPing(payload: JsonData): JsonData!
+  
+}
+

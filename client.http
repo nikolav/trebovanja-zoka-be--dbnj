@@ -1,0 +1,90 @@
+###
+
+http://127.0.0.1:5000
+
+###
+
+POST http://127.0.0.1:5000/testing
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer -
+
+{
+
+}
+
+###
+
+POST http://127.0.0.1:5000/graphql
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer -
+
+{
+  "query": "mutation { cloudMessagingPing }"
+}
+
+###
+
+POST http://127.0.0.1:5000/auth/authenticate
+Accept: application/json
+Content-Type: application/json
+
+{
+    "uid": "kH3FJ0gVTiUonMzG7cS4vKVjiMT2"
+}
+
+###
+
+http://80.240.25.97:5000
+
+###
+
+https://qyilcewitexjndalxkexol.online
+
+###
+
+http://127.0.0.1:5000/auth/who
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer -
+
+{
+    
+}
+
+###
+
+POST http://127.0.0.1:5000/graphql
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer -
+
+{
+    "query": "{ status }"
+}
+
+###
+
+POST http://127.0.0.1:5000/graphql
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer -
+
+{
+    "query": "{ cacheRedisGetCacheByKey(cache_key: \"foo1\") }"
+}
+
+###
+
+POST http://127.0.0.1:5000/graphql
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer -
+
+{
+    "query": "mutation { cacheRedisCommit(cache_key: \"foo1\", patch: { x1: 333 }) }"
+}
+
+###
+
