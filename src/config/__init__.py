@@ -24,9 +24,10 @@ class Config:
   MESSAGE = os.getenv('MESSAGE')
   
   # keys
-  KEY_TOKEN_CREATED_AT   = '@'
-  AUTH_PROFILE           = os.getenv('AUTH_PROFILE')
-  CLOUD_MESSAGING_TOKENS = os.getenv('CLOUD_MESSAGING_TOKENS')
+  KEY_TOKEN_CREATED_AT     = '@'
+  AUTH_PROFILE             = os.getenv('AUTH_PROFILE')
+  CLOUD_MESSAGING_TOKENS   = os.getenv('CLOUD_MESSAGING_TOKENS')
+  COLLECTIONS_DOCS_UPDATED = os.getenv('COLLECTIONS_DOCS_UPDATED')
   
   # paths
   FLASK_TEMPLATES_FOLDER     = os.getenv('FLASK_TEMPLATES_FOLDER')

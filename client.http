@@ -4,7 +4,7 @@ http://127.0.0.1:5000
 
 ###
 
-POST https://qyilcewitexjndalxkexol.online/testing
+POST http://127.0.0.1:5000/testing
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer -
@@ -26,12 +26,12 @@ Authorization: Bearer -
 
 ###
 
-POST https://qyilcewitexjndalxkexol.online/auth/authenticate
+POST http://127.0.0.1:5000/auth/authenticate
 Accept: application/json
 Content-Type: application/json
 
 {
-    "uid": "6fRaijoIECcuTICCcTfUXleUujl2"
+    "uid": "kH3FJ0gVTiUonMzG7cS4vKVjiMT2"
 }
 
 ###
@@ -55,7 +55,7 @@ Authorization: Bearer -
 
 ###
 
-POST https://qyilcewitexjndalxkexol.online/graphql
+POST http://127.0.0.1:5000/graphql
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer -
@@ -66,7 +66,7 @@ Authorization: Bearer -
 
 ###
 
-POST https://qyilcewitexjndalxkexol.online/graphql
+POST http://127.0.0.1:5000/graphql
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer -
@@ -84,6 +84,39 @@ Authorization: Bearer -
 
 {
     "query": "mutation { cacheRedisCommit(cache_key: \"foo1\", patch: { x1: 333 }) }"
+}
+
+###
+
+POST http://127.0.0.1:5000/graphql
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer -
+
+{
+    "query": "{ collectionsDocsByTopic(topic: \"main\") }"
+}
+
+###
+
+POST http://127.0.0.1:5000/graphql
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer -
+
+{
+    "query": "mutation { collectionsDocsUpsert(topic: \"main\", patches: [ { data: { id: \"68add2c9a461ac1b176fc84d\", data: { foo: 1 } } } ]) }"
+}
+
+###
+
+POST http://127.0.0.1:5000/graphql
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer -
+
+{
+    "query": "mutation { collectionsDocsDrop(topic: \"main\", ids: [\"68add2c9a461ac1b176fc84d\"]) }"
 }
 
 ###

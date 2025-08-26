@@ -15,6 +15,10 @@ type Query {
 
   # cache:redis
   cacheRedisGetCacheByKey(cache_key: String!): JsonData!
+
+  # collections
+  collectionsDocsByTopic(topic: String!, config: JsonData): JsonData!
+
 }
 
 ############
@@ -27,6 +31,10 @@ type Mutation {
 
   # messaging
   cloudMessagingPing(payload: JsonData): JsonData!
+
+  # collections:docs
+  collectionsDocsUpsert(topic: String!, patches: [JsonData!]!): JsonData!
+  collectionsDocsDrop(topic: String!, ids: [ID!]!): JsonData!
   
 }
 
