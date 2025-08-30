@@ -72,7 +72,7 @@ Content-Type: application/json
 Authorization: Bearer -
 
 {
-    "query": "{ cacheRedisGetCacheByKey(cache_key: \"foo1\") }"
+    "query": "{ cacheRedisGetCacheByKey(cache_key: \"FOO:1\") }"
 }
 
 ###
