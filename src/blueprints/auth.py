@@ -33,13 +33,15 @@ CORS(bp_auth)
 @bp_auth.route('/authenticate', methods = ('POST',))
 @arguments_schema(SchemaAuthArguments())
 def resolve_route_authenticate():
-  error = '@error:authenticate:access_token'
-  token = None
-  user  = None
-  uid   = g.arguments['uid']
+  error   = '@error:authenticate:access_token'
+  token   = None
+  user    = None
+  idToken = g.arguments['idToken']
+  decoded_idToken = None
 
   try:
-    user = auth.get_user(uid)
+    decoded_idToken = auth.verify_id_token(idToken)
+    user = auth.get_user(decoded_idToken['uid'])
     if not user:
       raise Exception('access denied')
     

@@ -3,7 +3,7 @@ from marshmallow import Schema
 from marshmallow import fields
 
 class SchemaAuthArguments(Schema):
-  uid = fields.String(required = True)
+  idToken = fields.String(required = True)
 
 class SchemaValidateCloudMessagingMessage(Schema):
   title = fields.String(required = True)
